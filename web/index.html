@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Too Much, Yet Never Enough — Zeyra</title>
+  <meta name="description" content="A book by Zeyra. Too Much, Yet Never Enough.">
+  
+  <!-- Typography: Playfair Display & Lora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="theme-cream">
+  <!-- Top Reading Progress Indicator -->
+  <div id="progress-bar" class="progress-bar" aria-hidden="true"></div>
+
+  <!-- Main Web Container -->
+  <div id="app">
+    
+    <!-- HOMEPAGE & BOOK OPENING VIEW -->
+    <section id="view-home" class="view view-home active" aria-label="Book Cover & Title Screen">
+      <div class="home-container">
+        
+        <!-- 3D Realistic Book Display -->
+        <div class="book-stage">
+          <div id="book-3d" class="book-3d" title="Click to open book">
+            <!-- Front Cover Layer -->
+            <div class="book-cover-front">
+              <img src="images/Cover.png" alt="Too Much, Yet Never Enough by Zeyra Cover" class="cover-img">
+              <div class="cover-spine-shadow"></div>
+            </div>
+            
+            <!-- Inside Page (Revealed when book opens) -->
+            <div class="book-inside-page">
+              <div class="inside-paper">
+                <span class="inside-sub">Original Manuscript</span>
+                <h2 class="inside-title">Too Much,<br>Yet Never Enough</h2>
+                <div class="inside-line"></div>
+                <p class="inside-author">by Zeyra</p>
+                <img src="images/Signature.png" alt="Zeyra Signature" class="author-signature-img">
+              </div>
+            </div>
+
+            <!-- Page Stack Effect -->
+            <div class="book-pages-stack"></div>
+          </div>
+        </div>
+
+        <!-- Title & Action Buttons -->
+        <div class="home-info">
+          <h1 class="home-title">
+            <span>Too Much,</span>
+            <span>Yet Never Enough</span>
+          </h1>
+          <div class="home-author-row">
+            <span class="home-author">Zeyra</span>
+            <img src="images/Signature.png" alt="Zeyra Signature" class="home-sig-thumb">
+          </div>
+
+          <div class="home-actions">
+            <button id="btn-begin" class="btn-primary" type="button">
+              Open the Book
+            </button>
+            <button id="btn-resume" class="btn-secondary hidden" type="button">
+              Resume Reading
+            </button>
+            <button id="btn-view-back-cover" class="btn-link" type="button">
+              View Back Cover
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BACK COVER MODAL / VIEW -->
+    <div id="modal-back-cover" class="modal-overlay hidden" aria-hidden="true">
+      <div class="modal-backdrop" id="backdrop-back-cover"></div>
+      <div class="modal-content card-modal">
+        <button id="btn-close-back-cover" class="close-btn" aria-label="Close Back Cover">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="modal-body">
+          <img src="images/Back_Cover.png" alt="Too Much, Yet Never Enough Back Cover" class="back-cover-modal-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- READER VIEW -->
+    <section id="view-reader" class="view view-reader hidden" aria-label="Book Reader">
+      <!-- Minimal Sticky Reader Header -->
+      <header class="reader-header">
+        <div class="header-left">
+          <button id="btn-home" class="icon-btn" title="Back to Title Screen" aria-label="Back to Title Screen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="btn-label">Home</span>
+          </button>
+          <span class="reader-book-title">Too Much, Yet Never Enough</span>
+        </div>
+
+        <div class="header-center">
+          <span id="current-chapter-indicator" class="chapter-indicator">Chapter 1</span>
+        </div>
+
+        <div class="header-right">
+          <div class="controls-group">
+            <!-- Theme Selector -->
+            <button id="btn-theme" class="icon-btn" title="Toggle Theme (Warm Cream / Soft Sepia / Quiet Dark)" aria-label="Toggle Theme">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+              </svg>
+            </button>
+
+            <!-- Font Size Adjuster -->
+            <button id="btn-font-dec" class="text-btn" title="Decrease Text Size" aria-label="Decrease Text Size">A-</button>
+            <button id="btn-font-inc" class="text-btn" title="Increase Text Size" aria-label="Increase Text Size">A+</button>
+
+            <!-- Table of Contents Toggle -->
+            <button id="btn-toc" class="icon-btn highlight" title="Table of Contents (M)" aria-label="Open Table of Contents">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="17" y2="18"></line>
+              </svg>
+              <span class="btn-label">Contents</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Reader Scroll Container -->
+      <main id="reader-main" class="reader-main" tabIndex="0">
+        
+        <!-- PART INTRO BANNER -->
+        <div id="part-banner" class="part-banner hidden" aria-live="polite">
+          <p id="part-banner-num" class="part-number"></p>
+          <h2 id="part-banner-title" class="part-title"></h2>
+          <div class="part-divider"></div>
+        </div>
+
+        <!-- CHAPTER CONTENT AREA -->
+        <article id="chapter-article" class="chapter-article" aria-live="polite">
+          <header class="chapter-header">
+            <p id="ch-number" class="ch-number-label"></p>
+            <h1 id="ch-title" class="ch-title-heading"></h1>
+          </header>
+          
+          <div id="ch-body" class="ch-body-text">
+            <!-- Manuscript text rendered dynamically -->
+          </div>
+
+          <!-- EPILOGUE SIGNATURE (Shown at end of Epilogue) -->
+          <div id="epilogue-signature" class="epilogue-sig-container hidden">
+            <img src="images/Signature.png" alt="Zeyra Signature" class="reader-signature-img">
+          </div>
+        </article>
+
+        <!-- CHAPTER NAVIGATION FOOTER -->
+        <nav class="reader-nav-footer" aria-label="Chapter Navigation">
+          <button id="btn-prev-ch" class="nav-btn prev" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <div class="nav-btn-text">
+              <span class="nav-sub">Previous</span>
+              <span id="prev-ch-title" class="nav-title">---</span>
+            </div>
+          </button>
+
+          <button id="btn-toc-footer" class="nav-toc-btn" type="button">
+            Table of Contents
+          </button>
+
+          <button id="btn-next-ch" class="nav-btn next" type="button">
+            <div class="nav-btn-text">
+              <span class="nav-sub">Next</span>
+              <span id="next-ch-title" class="nav-title">---</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </nav>
+
+        <!-- BOOK ENDING & BACK COVER VIEW -->
+        <footer id="book-footer" class="book-footer hidden">
+          <div class="ending-ornament">― FIN ―</div>
+          <p class="ending-title">Too Much, Yet Never Enough</p>
+          <p class="ending-author">by Zeyra</p>
+          <img src="images/Signature.png" alt="Zeyra Signature" class="footer-signature-img">
+
+          <div class="ending-back-cover">
+            <h3>Back Cover</h3>
+            <img src="images/Back_Cover.png" alt="Too Much, Yet Never Enough Back Cover" class="ending-back-cover-img">
+          </div>
+        </footer>
+
+      </main>
+    </section>
+
+    <!-- TABLE OF CONTENTS DRAWER / OVERLAY -->
+    <div id="toc-overlay" class="toc-overlay hidden" aria-hidden="true">
+      <div class="toc-backdrop" id="toc-backdrop"></div>
+      <aside class="toc-drawer" aria-label="Table of Contents">
+        <header class="toc-header">
+          <div class="toc-header-title">
+            <h2>Table of Contents</h2>
+            <span class="toc-book-author">Too Much, Yet Never Enough</span>
+          </div>
+          <button id="btn-close-toc" class="close-btn" aria-label="Close Table of Contents">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </header>
+
+        <div id="toc-list" class="toc-list">
+          <!-- Dynamic Parts and Chapters -->
+        </div>
+
+        <div class="toc-footer-actions">
+          <button id="btn-toc-back-cover" class="btn-secondary full-width">
+            View Back Cover
+          </button>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+
+  <!-- Embedded Manuscript Data -->
+  <script src="js/book_data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
